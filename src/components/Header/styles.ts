@@ -9,4 +9,8 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   background: ${({ theme }) => theme['blue-dark'][700]};
+
+  .logo {
+    margin-top: -4rem;
+  }
 `

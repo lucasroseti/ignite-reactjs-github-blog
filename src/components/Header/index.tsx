@@ -6,7 +6,7 @@ export function Header() {
   return (
     <HeaderContainer>
       <img src={EffectLeft} alt="" />
-      <img src={GitHubLogoSVG} alt="" />
+      <img src={GitHubLogoSVG} alt="" className="logo" />
       <img src={EffectRight} alt="" />
     </HeaderContainer>
   )
