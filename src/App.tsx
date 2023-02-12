@@ -1,12 +1,15 @@
 import { ThemeProvider } from 'styled-components'
 
+import { Blog } from './page/Blog'
+
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <h1>GitHub Blog</h1>
+      <Blog />
+
       <GlobalStyle />
     </ThemeProvider>
   )
