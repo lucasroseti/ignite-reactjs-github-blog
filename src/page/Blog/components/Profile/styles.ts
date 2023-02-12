@@ -18,6 +18,7 @@ export const ProfileContainer = styled.div`
     border-radius: 8px;
   }
 `
+
 export const ProfileContent = styled.div`
   flex: 1;
   display: flex;
