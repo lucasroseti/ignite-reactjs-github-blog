@@ -1,4 +1,3 @@
-import { Header } from '../../components/Header'
 import { Post } from './components/Post'
 import { Profile } from './components/Profile'
 import { SearchForm } from './components/SearchForm'
@@ -101,7 +100,6 @@ const posts = [
 export function Blog() {
   return (
     <BlogContainer>
-      <Header />
       <Profile />
 
       <BlogContent>
