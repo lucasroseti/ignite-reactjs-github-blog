@@ -1,6 +1,7 @@
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const PostContainer = styled.div`
+export const PostContainer = styled(NavLink)`
   width: 100%;
   max-width: 416px;
   background: ${({ theme }) => theme['blue-dark'][700]};
@@ -8,6 +9,7 @@ export const PostContainer = styled.div`
   padding: 2rem;
   box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  text-decoration: none;
 
   display: flex;
   flex-direction: column;

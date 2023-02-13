@@ -22,7 +22,7 @@ export function Post({ id, title, description, createdAt }: PostProps) {
   })
 
   return (
-    <PostContainer>
+    <PostContainer to={`/post/${id}`}>
       <PostHeader>
         {title}
         <time title={createdAtDateFormatted} dateTime={createdAt.toISOString()}>

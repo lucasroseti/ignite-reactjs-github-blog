@@ -36,13 +36,13 @@ export function Profile() {
 
           <ProfileTags>
             <span>
-              <GithubLogo /> lucasroseti
+              <GithubLogo weight="fill" /> lucasroseti
             </span>
             <span>
-              <Buildings /> Rocketseat
+              <Buildings weight="fill" /> Rocketseat
             </span>
             <span>
-              <UsersThree />
+              <UsersThree weight="fill" />
               32 seguidores
             </span>
           </ProfileTags>
