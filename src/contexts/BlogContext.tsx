@@ -27,6 +27,7 @@ interface Issue {
 interface BlogContextType {
   user: User
   issues: Issue[]
+  fetchIssues: (query?: string) => Promise<void>
 }
 
 interface ContextProviderProps {
@@ -69,7 +70,7 @@ export function BlogProvider({ children }: ContextProviderProps) {
   }, [fetchUser, fetchIssues])
 
   return (
-    <BlogContext.Provider value={{ user, issues }}>
+    <BlogContext.Provider value={{ user, issues, fetchIssues }}>
       {children}
     </BlogContext.Provider>
   )
