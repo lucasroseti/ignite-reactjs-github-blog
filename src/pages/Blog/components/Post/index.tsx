@@ -1,5 +1,4 @@
-import { format, formatDistanceToNow } from 'date-fns'
-import ptBR from 'date-fns/locale/pt-BR'
+import { useFormatDate } from '../../../../hooks/useFormatDate'
 
 import { PostContainer, PostDescription, PostHeader } from './styles'
 
@@ -11,16 +10,11 @@ interface PostProps {
 }
 
 export function Post({ id, title, description, createdAt }: PostProps) {
-  const createdAtFormatDate = new Date(createdAt)
-  const createdAtDateFormatted = format(
+  const {
     createdAtFormatDate,
-    "d 'de' LLLL 'às' HH:mm'h'",
-    { locale: ptBR },
-  )
-  const createdAtDateRelativeToNow = formatDistanceToNow(createdAtFormatDate, {
-    locale: ptBR,
-    addSuffix: true,
-  })
+    createdAtDateFormatted,
+    createdAtDateRelativeToNow,
+  } = useFormatDate(createdAt)
 
   return (
     <PostContainer to={`/post/${id}`}>

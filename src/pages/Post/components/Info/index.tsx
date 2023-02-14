@@ -6,8 +6,8 @@ import {
   ChatCircle,
   GithubLogo,
 } from 'phosphor-react'
-import { format, formatDistanceToNow } from 'date-fns'
-import ptBR from 'date-fns/locale/pt-BR'
+
+import { useFormatDate } from '../../../../hooks/useFormatDate'
 
 import {
   InfoContainer,
@@ -26,16 +26,11 @@ interface InfoProps {
 }
 
 export function Info({ title, htmlUrl, comments, user, createdAt }: InfoProps) {
-  const createdAtFormatDate = new Date(createdAt)
-  const createdAtDateFormatted = format(
+  const {
     createdAtFormatDate,
-    "d 'de' LLLL 'às' HH:mm'h'",
-    { locale: ptBR },
-  )
-  const createdAtDateRelativeToNow = formatDistanceToNow(createdAtFormatDate, {
-    locale: ptBR,
-    addSuffix: true,
-  })
+    createdAtDateFormatted,
+    createdAtDateRelativeToNow,
+  } = useFormatDate(createdAt)
 
   return (
     <InfoContainer>
