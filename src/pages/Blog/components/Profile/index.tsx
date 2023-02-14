@@ -1,9 +1,12 @@
+import { useContext } from 'react'
 import {
   ArrowSquareOut,
   Buildings,
   GithubLogo,
   UsersThree,
 } from 'phosphor-react'
+
+import { BlogContext } from '../../../../contexts/BlogContext'
 
 import {
   ProfileContainer,
@@ -14,36 +17,34 @@ import {
 } from './styles'
 
 export function Profile() {
+  const { user } = useContext(BlogContext)
+
   return (
     <ProfileContainer>
-      <img src="https://github.com/lucasroseti.png" alt="" />
+      <img src={user.avatar_url} alt="" />
 
       <ProfileContent>
         <ProfileHeader>
-          <span>Lucas Roseti</span>
-          <a href="https://github.com/lucasroseti">
+          <span>{user.name}</span>
+          <a href={user.html_url}>
             GITHUB
             <ArrowSquareOut size={16} />
           </a>
         </ProfileHeader>
 
         <ProfileDescription>
-          <span>
-            Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-            viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-            volutpat pulvinar vel mass.
-          </span>
+          <span>{user.bio}</span>
 
           <ProfileTags>
             <span>
-              <GithubLogo weight="fill" /> lucasroseti
+              <GithubLogo weight="fill" /> {user.login}
             </span>
             <span>
-              <Buildings weight="fill" /> Rocketseat
+              <Buildings weight="fill" /> {user.company}
             </span>
             <span>
               <UsersThree weight="fill" />
-              32 seguidores
+              {user.followers} seguidores
             </span>
           </ProfileTags>
         </ProfileDescription>
