@@ -6,6 +6,8 @@ import {
   ChatCircle,
   GithubLogo,
 } from 'phosphor-react'
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
 import {
   InfoContainer,
@@ -15,7 +17,26 @@ import {
   InfoTitle,
 } from './styles'
 
-export function Info() {
+interface InfoProps {
+  title: string
+  htmlUrl: string
+  comments: number
+  user: string
+  createdAt: Date
+}
+
+export function Info({ title, htmlUrl, comments, user, createdAt }: InfoProps) {
+  const createdAtFormatDate = new Date(createdAt)
+  const createdAtDateFormatted = format(
+    createdAtFormatDate,
+    "d 'de' LLLL 'às' HH:mm'h'",
+    { locale: ptBR },
+  )
+  const createdAtDateRelativeToNow = formatDistanceToNow(createdAtFormatDate, {
+    locale: ptBR,
+    addSuffix: true,
+  })
+
   return (
     <InfoContainer>
       <InfoContent>
@@ -24,23 +45,30 @@ export function Info() {
             <CaretLeft size={16} />
             VOLTAR
           </NavLink>
-          <a href="https://github.com/lucasroseti">
+          <a href={htmlUrl}>
             VER NO GITHUB
             <ArrowSquareOut size={16} />
           </a>
         </InfoHeader>
 
-        <InfoTitle>JavaScript data types and data structures</InfoTitle>
+        <InfoTitle>{title}</InfoTitle>
 
         <InfoTags>
           <span>
-            <GithubLogo weight="fill" /> lucasroseti
+            <GithubLogo weight="fill" /> {user}
           </span>
           <span>
-            <Calendar weight="fill" /> Há um dia
+            <Calendar weight="fill" />{' '}
+            <time
+              title={createdAtDateFormatted}
+              dateTime={createdAtFormatDate.toISOString()}
+            >
+              {createdAtDateRelativeToNow}
+            </time>
           </span>
           <span>
-            <ChatCircle weight="fill" />5 comentários
+            <ChatCircle weight="fill" />
+            {comments} comentários
           </span>
         </InfoTags>
       </InfoContent>

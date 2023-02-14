@@ -35,8 +35,8 @@ export function Blog() {
         <BlogPosts>
           {issues.map((post) => (
             <Post
-              key={post.id}
-              id={post.id}
+              key={post.number}
+              id={post.number}
               title={post.title}
               description={post.body}
               createdAt={post.created_at}
