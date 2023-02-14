@@ -17,8 +17,16 @@ interface User {
   followers: number
 }
 
+interface Issue {
+  id: number
+  title: string
+  body: string
+  created_at: Date
+}
+
 interface BlogContextType {
   user: User
+  issues: Issue[]
 }
 
 interface ContextProviderProps {
@@ -37,6 +45,7 @@ export function BlogProvider({ children }: ContextProviderProps) {
     bio: '',
     followers: 0,
   })
+  const [issues, setIssues] = useState<Issue[]>([])
 
   const fetchUser = useCallback(async () => {
     const response = await api.get('users/lucasroseti')
@@ -44,11 +53,24 @@ export function BlogProvider({ children }: ContextProviderProps) {
     setUser(response.data)
   }, [])
 
+  const fetchIssues = useCallback(async (query?: string) => {
+    const response = await api.get(
+      `search/issues?q=${
+        query || ''
+      }repo:lucasroseti/ignite-reactjs-github-blog`,
+    )
+
+    setIssues(response.data.items)
+  }, [])
+
   useEffect(() => {
     fetchUser()
-  }, [fetchUser])
+    fetchIssues()
+  }, [fetchUser, fetchIssues])
 
   return (
-    <BlogContext.Provider value={{ user }}>{children}</BlogContext.Provider>
+    <BlogContext.Provider value={{ user, issues }}>
+      {children}
+    </BlogContext.Provider>
   )
 }

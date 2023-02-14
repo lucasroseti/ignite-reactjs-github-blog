@@ -12,6 +12,24 @@ export const BlogContent = styled.main`
   gap: 3rem;
 `
 
+export const BlogPostHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`
+
+export const BlogPostTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.125rem;
+  line-height: 1.6;
+
+  span {
+    font-size: 0.875rem;
+    color: ${({ theme }) => theme.slate[300]};
+  }
+`
+
 export const BlogPosts = styled.div`
   display: flex;
   flex-wrap: wrap;

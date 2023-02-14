@@ -11,12 +11,13 @@ interface PostProps {
 }
 
 export function Post({ id, title, description, createdAt }: PostProps) {
+  const createdAtFormatDate = new Date(createdAt)
   const createdAtDateFormatted = format(
-    createdAt,
+    createdAtFormatDate,
     "d 'de' LLLL 'às' HH:mm'h'",
     { locale: ptBR },
   )
-  const createdAtDateRelativeToNow = formatDistanceToNow(createdAt, {
+  const createdAtDateRelativeToNow = formatDistanceToNow(createdAtFormatDate, {
     locale: ptBR,
     addSuffix: true,
   })
@@ -25,7 +26,10 @@ export function Post({ id, title, description, createdAt }: PostProps) {
     <PostContainer to={`/post/${id}`}>
       <PostHeader>
         {title}
-        <time title={createdAtDateFormatted} dateTime={createdAt.toISOString()}>
+        <time
+          title={createdAtDateFormatted}
+          dateTime={createdAtFormatDate.toISOString()}
+        >
           {createdAtDateRelativeToNow}
         </time>
       </PostHeader>
