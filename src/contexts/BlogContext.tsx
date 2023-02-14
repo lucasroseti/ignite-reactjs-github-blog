@@ -77,6 +77,8 @@ export function BlogProvider({ children }: ContextProviderProps) {
     created_at: new Date(),
   })
 
+  const urlGitBlog = 'lucasroseti/ignite-reactjs-github-blog'
+
   const fetchUser = useCallback(async () => {
     const response = await api.get('users/lucasroseti')
 
@@ -84,19 +86,17 @@ export function BlogProvider({ children }: ContextProviderProps) {
   }, [])
 
   const fetchIssue = useCallback(async (id: string) => {
-    const response = await api.get(
-      `repos/lucasroseti/ignite-reactjs-github-blog/issues/${id}`,
-    )
+    const response = await api.get(`repos/${urlGitBlog}/issues/${id}`)
 
     setIssue(response.data)
   }, [])
 
   const fetchIssues = useCallback(async (query?: string) => {
-    const response = await api.get(
-      `search/issues?q=${
-        query || ''
-      }repo:lucasroseti/ignite-reactjs-github-blog`,
-    )
+    const response = await api.get('search/issues', {
+      params: {
+        q: `${query || ''} repo:${urlGitBlog}`,
+      },
+    })
 
     setIssues(response.data.items)
   }, [])
