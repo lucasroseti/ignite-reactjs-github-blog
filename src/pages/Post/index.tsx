@@ -1,5 +1,6 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { useContextSelector } from 'use-context-selector'
 import ReactMarkdown from 'react-markdown'
 
 import { BlogContext } from '../../contexts/BlogContext'
@@ -9,7 +10,10 @@ import { PostContainer, PostDescription } from './styles'
 
 export function Post() {
   const { id } = useParams()
-  const { issue, fetchIssue } = useContext(BlogContext)
+
+  const { issue, fetchIssue } = useContextSelector(BlogContext, (context) => {
+    return { issue: context.issue, fetchIssue: context.fetchIssue }
+  })
 
   useEffect(() => {
     fetchIssue(id || '')

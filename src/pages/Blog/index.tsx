@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContextSelector } from 'use-context-selector'
 
 import { BlogContext } from '../../contexts/BlogContext'
 
@@ -15,7 +15,9 @@ import {
 } from './styles'
 
 export function Blog() {
-  const { issues } = useContext(BlogContext)
+  const issues = useContextSelector(BlogContext, (context) => {
+    return context.issues
+  })
 
   const totalIssues = issues.length
 

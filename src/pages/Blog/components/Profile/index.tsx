@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContextSelector } from 'use-context-selector'
 import {
   ArrowSquareOut,
   Buildings,
@@ -17,7 +17,9 @@ import {
 } from './styles'
 
 export function Profile() {
-  const { user } = useContext(BlogContext)
+  const user = useContextSelector(BlogContext, (context) => {
+    return context.user
+  })
 
   return (
     <ProfileContainer>
